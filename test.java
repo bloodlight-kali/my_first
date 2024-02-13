@@ -1,52 +1,70 @@
 import java.util.Scanner;
 public class test {
-   static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args){
-        int number1 = get();
-        int number2 = get();
-        char operation = getoperation();
-        int result = calc(number1, number2, operation);
-        System.out.println("результат");
-        System.out.println(result);
+    public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите арифметическое выражение, например 2 + 3:");
+        String input = scanner.nextLine();
+        String result = calc(input);
+        System.out.println("Результат: " + result);
     }
-    public  static int get(){
-        System.out.println("введите число");
-        int number;
-        number = scanner.nextInt();
-        return number;
-    }
-    public static char getoperation(){
-        char operation;
-        System.out.println("выберете операцию");
-        if (scanner.hasNext()) {
-            operation = scanner.next().charAt(0);
+
+    private static String calc(String input) throws Exception {
+        String[] elements = input.split(" ");
+        if (elements.length > 3) {
+            try {
+                throw new Exception("размер массива больше 3");
+            } catch (Exception e) {
+                System.err.println("ошибка - " + e.getMessage());
+                System.exit(0);
+            }
         }
-        else {
-            System.out.println("Вы допустили ошибку при вводе операции. Попробуйте еще раз.");
-            operation = getoperation();
+        if (elements.length < 3) {
+            try {
+                throw new Exception("размер массива меньше 3");
+            } catch (Exception e) {
+                System.err.println("ошибка - " + e.getMessage());
+                System.exit(0);
+            }
         }
-        return operation;
-    }
-    public static int calc(int number1, int number2, char operation){
+        int num1 = Integer.parseInt(elements[0]);
+        int num2 = Integer.parseInt(elements[2]);
+        String operator = elements[1];
+        if (num1 > 10) {
+            return " Вы можете ввести только числа от 1 до 10 включительно";
+        }
+        if (num1 < 1) {
+            return " Вы можете ввести только числа от 1 до 10 включительно";
+        }
+        if (num2 > 10) {
+            return " Вы можете ввести только числа от 1 до 10 включительно";
+        }
+        if (num2 < 1) {
+            return " Вы можете ввести только числа от 1 до 10 включительно";
+        }
         int result;
-        switch (operation){
-            case '+':
-                result = number1+number2;
+        switch (operator) {
+            case "+":
+                result = num1 + num2;
                 break;
-            case '-':
-                result = number1-number2;
+            case "-":
+                result = num1 - num2;
                 break;
-            case '*':
-                result = number1*number2;
+            case "*":
+                result = num1 * num2;
                 break;
-            case '/':
-                result = number1/number2;
+            case "/":
+                result = num1 / num2;
                 break;
             default:
-                System.out.println("не распознано");
-                result = calc(number1, number2, getoperation());
+                try {
+                    throw new Exception("неверный оператор");
+                } catch (Exception e) {
+                    System.err.println("ошибка - " + e.getMessage());
+                    System.exit(0);
+                }
+                return null;
         }
-        return result;
+        return String.valueOf(result);
     }
 }
 
