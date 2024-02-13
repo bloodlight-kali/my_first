@@ -14,7 +14,6 @@ public class test_calc {
             int num1 = Integer.parseInt(elements[0]);
             int num2 = Integer.parseInt(elements[2]);
             String operator = elements[1];
-
             if (elements.length > 3){
                 try {
                     throw new Exception("размер массива больше 3");
