@@ -18,7 +18,7 @@ public class test_calc {
                 }
                 catch (Exception e){
                 System.err.println("ошибка - " + e.getMessage());
-                return "";
+                System.exit(0);
                 }
             }
             if (num1 >10){
