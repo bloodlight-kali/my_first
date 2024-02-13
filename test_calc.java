@@ -54,11 +54,7 @@ public class test_calc {
                     result = num1 * num2;
                     break;
                 case "/":
-                    if (num2 != 0) {
                         result = num1 / num2;
-                    } else {
-                        return "Ошибка: деление на ноль!";
-                    }
                     break;
                 default:
                     try {
